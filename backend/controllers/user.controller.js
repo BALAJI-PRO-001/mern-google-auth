@@ -96,21 +96,20 @@ async function uploadAvatar(req, res, next) {
 
 
 async function downloadAvatar(req, res, next) {
-  return res.status(200).json({message: "hi"});
-  // try {
-  //   const avatarFilesDirPath = path.join(__dirname, "../uploads");
-  //   const fileNames = await fs.readdir(avatarFilesDirPath);
+  try {
+    const avatarFilesDirPath = path.join(__dirname, "../uploads");
+    const fileNames = await fs.readdir(avatarFilesDirPath);
 
-  //   for (let fileName of fileNames) {
-  //     if (fileName.includes(req.params.id)) {
-  //       return res.status(200).sendFile(path.join(avatarFilesDirPath, fileName));
-  //     }
-  //   }
+    for (let fileName of fileNames) {
+      if (fileName.includes(req.params.id)) {
+        return res.status(200).sendFile(path.join(avatarFilesDirPath, fileName));
+      }
+    }
 
-  //   return next(errorHandler(404, "File not found"));
-  // } catch(err) {
-  //   next(err);
-  // }
+    return next(errorHandler(404, "File not found"));
+  } catch(err) {
+    next(err);
+  }
 } 
 
 
