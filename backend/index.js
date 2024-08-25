@@ -25,6 +25,8 @@ app.use(cors({
   credentials: true
 }));
 
+app.use(express.static(path.join(__dirname, "./uploads")));
+
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/admin", adminRouter)
