@@ -82,7 +82,7 @@ async function uploadAvatar(req, res, next) {
     if (req.file == undefined) return next(errorHandler(400, "No File Selected"));
 
     const { originalname, filename} = req.file;
-    const downloadURL = `https://${req.host}:${process.env.PORT || 3000}/api/v1/user/download/avatar/${filename.split("-")[0]}`;
+    const downloadURL = `${req.protocol}://${req.hostname}:${process.env.PORT || 3000}/api/v1/user/download/avatar/${filename.split("-")[0]}`;
     res.status(200).json({
       success: true,
       message: "File uploaded successfully",
@@ -96,22 +96,21 @@ async function uploadAvatar(req, res, next) {
 
 
 async function downloadAvatar(req, res, next) {
-  console.log(req.params.id);
-  try {
-    const avatarFilesDirPath = path.join(__dirname, "../uploads");
-    const fileNames = await fs.readdir(avatarFilesDirPath);
+  return res.status(200).json({message: "hi"});
+  // try {
+  //   const avatarFilesDirPath = path.join(__dirname, "../uploads");
+  //   const fileNames = await fs.readdir(avatarFilesDirPath);
 
-    for (let fileName of fileNames) {
-      if (fileName.includes(req.params.id)) {
-        console.log(path.join(avatarFilesDirPath, fileName));
-        return res.status(200).sendFile(path.join(avatarFilesDirPath, fileName));
-      }
-    }
+  //   for (let fileName of fileNames) {
+  //     if (fileName.includes(req.params.id)) {
+  //       return res.status(200).sendFile(path.join(avatarFilesDirPath, fileName));
+  //     }
+  //   }
 
-    return next(errorHandler(404, "File not found"));
-  } catch(err) {
-    next(err);
-  }
+  //   return next(errorHandler(404, "File not found"));
+  // } catch(err) {
+  //   next(err);
+  // }
 } 
 
 
