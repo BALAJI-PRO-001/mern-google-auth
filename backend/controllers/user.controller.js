@@ -82,7 +82,7 @@ async function uploadAvatar(req, res, next) {
     if (req.file == undefined) return next(errorHandler(400, "No File Selected"));
 
     const { originalname, filename} = req.file;
-    const downloadURL = `${req.protocol}://${req.hostname}:${process.env.PORT || 3000}/api/v1/user/download/avatar/${filename.split("-")[0]}`;
+    const downloadURL = `${process.env.PROTOCOL || "http"}://${process.env.HOST || "localhost"}:${process.env.PORT || 3000}/api/v1/user/download/avatar/${filename.split("-")[0]}`;
     res.status(200).json({
       success: true,
       message: "File uploaded successfully",
