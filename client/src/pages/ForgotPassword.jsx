@@ -85,7 +85,7 @@ const ForgotPassword = () => {
     if (validator.isValidEmail(formData.email).isValid) {
       try {
         setSendOTPLoading(true);
-        const res = await fetch("http://localhost:3000/api/v1/auth/forgot-password", {
+        const res = await fetch("/api/v1/auth/forgot-password", {
           headers: {"Content-Type": "application/json"},
           method: "POST",
           body: JSON.stringify({
