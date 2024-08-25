@@ -17,7 +17,7 @@ const OAuthGoogle = () => {
       const auth = getAuth(app);
       const result = await signInWithPopup(auth, provider);
 
-      const res = await fetch("http://localhost:3000/api/v1/auth/google", {
+      const res = await fetch("/api/v1/auth/google", {
         headers: { "Content-Type": "application/json"},
         method: "POST",
         body: JSON.stringify({
