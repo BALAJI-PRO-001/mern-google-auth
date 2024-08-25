@@ -124,7 +124,7 @@ const ForgotPassword = () => {
     ) {
       try {
         setResetPasswordLoading(true);
-        const res = await fetch("http://localhost:3000/api/v1/auth/reset-password", {
+        const res = await fetch("/api/v1/auth/reset-password", {
           headers: {"Content-Type": "application/json"},
           method: "POST",
           body: JSON.stringify({
