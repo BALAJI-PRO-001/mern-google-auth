@@ -96,7 +96,7 @@ async function google(req, res, next) {
 
       const accessToken = jwt.sign({id: newUser.id}, process.env.JWT_SECRET_KEY);
       const { password:_, ...rest } = newUser._doc;
-      res.status(201).cookie("access_token", accessToken, {httpOnly: true}).json({
+      res.status(201).cookie("user_access_token", accessToken, {httpOnly: true}).json({
         success: true,
         data: {
           user: rest
