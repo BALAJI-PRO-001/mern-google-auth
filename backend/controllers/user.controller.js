@@ -96,12 +96,14 @@ async function uploadAvatar(req, res, next) {
 
 
 async function downloadAvatar(req, res, next) {
+  console.log(req.params.id);
   try {
     const avatarFilesDirPath = path.join(__dirname, "../uploads");
     const fileNames = await fs.readdir(avatarFilesDirPath);
 
     for (let fileName of fileNames) {
       if (fileName.includes(req.params.id)) {
+        console.log(path.join(avatarFilesDirPath, fileName));
         return res.status(200).sendFile(path.join(avatarFilesDirPath, fileName));
       }
     }
