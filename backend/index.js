@@ -5,12 +5,13 @@ const authRouter = require("./routes/auth.route");
 const userRouter = require("./routes/user.route");
 const adminRouter = require("./routes/admin.route"); 
 const mongodb = require("./db/mongodb");
+const keepMongoDBActive = require("./utils/keepMongoDBActive");
 const path = require("path");
-const cleanUnusedAvatarImages = require("./utils/cleanUnusedAvatarImages");
 const cors = require("cors");
 const app = express();
   
 mongodb.connect();
+setInterval(keepMongoDBActive, 12 * 60 * 60 * 1000);
 
 app.use(express.json());
 app.use(cookieParser());
