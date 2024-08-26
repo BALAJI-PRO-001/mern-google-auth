@@ -12,10 +12,6 @@ const app = express();
   
 mongodb.connect();
 
-setInterval(() => {
-  cleanUnusedAvatarImages();
-}, 43200000); // * Delete unused avatar files every 12 hours
-
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
