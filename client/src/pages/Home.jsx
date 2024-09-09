@@ -16,7 +16,7 @@ const Home = () => {
           <br />
           <b>Email:</b> admin@gmail.com
           <br />
-          <b>Password:</b> admin@1234
+          <b>Password:</b> Admin@1234
         </p>
       </ul>
 
